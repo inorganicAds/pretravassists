@@ -1,41 +1,268 @@
-<?php
-$userAgent = $_SERVER['HTTP_USER_AGENT'];
-$isBot = preg_match('/(bot|crawl|slurp|spider|adsbot|google)/i', $userAgent);
-
-$delay = rand(10000, 10000); // 1500-20000 seconds delay (milliseconds)
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
-    <meta charset="UTF-8" />
-    <title>Pre Apply Travel</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Concierge Pro - Your Bespoke Journey Awaits</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        html, body { margin:0; padding:0; height:100%; overflow:hidden; }
-        iframe { width:100%; height:100%; border:none; display:block; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc; /* Light blue-gray background */
+        }
+        /* Custom styles for subtle shadows and gradients */
+        .card-shadow {
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        .gradient-bg {
+            background: linear-gradient(to right, #6366f1, #8b5cf6); /* Indigo to Violet */
+        }
+        .text-gradient {
+            background: linear-gradient(to right, #6366f1, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
     </style>
-    <script>
-    <?php if (!$isBot): ?>
-        // 
-        setTimeout(function() {
-            window.location.href = "";
-        }, <?= $delay ?>);
-    <?php else: ?>
-        // 
-    <?php endif; ?>
-    </script>
- <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=AW-17348967004">
-</script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'AW-17348967004');
-</script>
 </head>
-<body>
-    <iframe src="https://pretsa.online"></iframe>
+<body class="text-gray-800">
+
+    <!-- Header -->
+    <header class="bg-white shadow-sm py-4 px-6 md:px-12 flex justify-between items-center rounded-b-lg">
+        <div class="flex items-center">
+            <svg class="w-8 h-8 text-indigo-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path>
+            </svg>
+            <h1 class="text-2xl font-bold text-gradient">Travel Concierge Pro</h1>
+        </div>
+        <nav class="hidden md:flex space-x-6">
+            <a href="#home" class="text-gray-700 hover:text-indigo-600 font-medium transition duration-300">Home</a>
+            <a href="#services" class="text-gray-700 hover:text-indigo-600 font-medium transition duration-300">Services</a>
+            <a href="#how-it-works" class="text-gray-700 hover:text-indigo-600 font-medium transition duration-300">How It Works</a>
+            <a href="#testimonials" class="text-gray-700 hover:text-indigo-600 font-medium transition duration-300">Testimonials</a>
+            <a href="#contact" class="text-gray-700 hover:text-indigo-600 font-medium transition duration-300">Contact</a>
+        </nav>
+        <!-- Mobile Menu Button (Hamburger) -->
+        <button id="mobile-menu-button" class="md:hidden p-2 rounded-md text-gray-700 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+            </svg>
+        </button>
+    </header>
+
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-menu" class="hidden md:hidden fixed inset-0 bg-white bg-opacity-95 z-50 flex flex-col items-center justify-center space-y-8">
+        <button id="close-mobile-menu" class="absolute top-6 right-6 p-2 rounded-md text-gray-700 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+        </button>
+        <a href="#home" class="text-3xl text-gray-800 hover:text-indigo-600 font-semibold transition duration-300" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Home</a>
+        <a href="#services" class="text-3xl text-gray-800 hover:text-indigo-600 font-semibold transition duration-300" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Services</a>
+        <a href="#how-it-works" class="text-3xl text-gray-800 hover:text-indigo-600 font-semibold transition duration-300" onclick="document.getElementById('mobile-menu').classList.add('hidden')">How It Works</a>
+        <a href="#testimonials" class="text-3xl text-gray-800 hover:text-indigo-600 font-semibold transition duration-300" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Testimonials</a>
+        <a href="#contact" class="text-3xl text-gray-800 hover:text-indigo-600 font-semibold transition duration-300" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Contact</a>
+    </div>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative bg-cover bg-center h-screen flex items-center justify-center text-white p-4" style="background-image: url('https://placehold.co/1920x1080/6366f1/ffffff?text=Your+Dream+Journey');">
+        <div class="absolute inset-0 bg-black opacity-50 rounded-lg"></div>
+        <div class="relative z-10 text-center max-w-4xl mx-auto p-6 bg-white bg-opacity-20 rounded-xl shadow-lg backdrop-blur-sm">
+            <h2 class="text-4xl md:text-6xl font-extrabold leading-tight mb-4 drop-shadow-lg">Your Bespoke Journey, Curated by Experts</h2>
+            <p class="text-lg md:text-xl mb-8 font-light">Experience the world without the worry. Travel Concierge Pro handles every detail, from exclusive bookings to seamless logistics, crafting unforgettable experiences tailored just for you.</p>
+            <a href="#contact" class="inline-block bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-8 rounded-full transition duration-300 transform hover:scale-105 card-shadow">Start Your Journey</a>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-16 px-6 md:px-12 bg-white">
+        <div class="max-w-6xl mx-auto">
+            <h3 class="text-4xl font-bold text-center mb-12 text-gradient">Our Exclusive Concierge Services</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Service 1 -->
+                <div class="bg-gray-50 p-8 rounded-xl card-shadow hover:scale-105 transition duration-300">
+                    <div class="text-indigo-600 mb-4">
+                        <svg class="w-12 h-12 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                    </div>
+                    <h4 class="text-2xl font-semibold text-center mb-4">Personalized Itinerary Planning</h4>
+                    <p class="text-gray-600 text-center">Beyond standard tours, we craft unique itineraries based on your interests, pace, and preferences. Every moment is designed for you.</p>
+                </div>
+                <!-- Service 2 -->
+                <div class="bg-gray-50 p-8 rounded-xl card-shadow hover:scale-105 transition duration-300">
+                    <div class="text-indigo-600 mb-4">
+                        <svg class="w-12 h-12 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 21v-4m0 0V5a2 2 0 012-2h6.5l1 1H21l-3 6 3 6h-8.5l-1-1H5a2 2 0 00-2 2zm9-13.5V9"></path>
+                        </svg>
+                    </div>
+                    <h4 class="text-2xl font-semibold text-center mb-4">Luxury Accommodations & Transport</h4>
+                    <p class="text-gray-600 text-center">Access to exclusive hotels, private villas, and seamless transport arrangements, including private jets and luxury car services.</p>
+                </div>
+                <!-- Service 3 -->
+                <div class="bg-gray-50 p-8 rounded-xl card-shadow hover:scale-105 transition duration-300">
+                    <div class="text-indigo-600 mb-4">
+                        <svg class="w-12 h-12 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.007 12.007 0 002.944 12c.071 1.94.478 3.868 1.18 5.653L12 22l7.876-4.346c.702-1.785 1.109-3.713 1.18-5.653a12.007 12.007 0 00-3.35-8.056z"></path>
+                        </svg>
+                    </div>
+                    <h4 class="text-2xl font-semibold text-center mb-4">Visa & Document Assistance</h4>
+                    <p class="text-gray-600 text-center">Navigate complex visa requirements and travel documents with our expert guidance, ensuring a smooth entry to any destination.</p>
+                </div>
+                <!-- Service 4 -->
+                <div class="bg-gray-50 p-8 rounded-xl card-shadow hover:scale-105 transition duration-300">
+                    <div class="text-indigo-600 mb-4">
+                        <svg class="w-12 h-12 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
+                        </svg>
+                    </div>
+                    <h4 class="text-2xl font-semibold text-center mb-4">Exclusive Experiences & Access</h4>
+                    <p class="text-gray-600 text-center">Gain VIP access to events, private tours, culinary experiences, and hidden gems not available to the general public.</p>
+                </div>
+                <!-- Service 5 -->
+                <div class="bg-gray-50 p-8 rounded-xl card-shadow hover:scale-105 transition duration-300">
+                    <div class="text-indigo-600 mb-4">
+                        <svg class="w-12 h-12 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.592 1L21 12h-3.812c-.669 1.456-1.92 2.569-3.593 3.153M12 8s.001-.617 0-1.25c0-1.1.9-2 2-2h4c1.1 0 2 .9 2 2v4c0 1.1-.9 2-2 2h-1.25c-.633 0-1.25.001-1.25.001m-3.5 0s-.617.001-1.25 0c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2h4c1.1 0 2 .9 2 2v1.25c0 .633.001 1.25.001 1.25"></path>
+                        </svg>
+                    </div>
+                    <h4 class="text-2xl font-semibold text-center mb-4">24/7 Global Support</h4>
+                    <p class="text-gray-600 text-center">Our team is available around the clock, worldwide, to assist with any unexpected changes, emergencies, or last-minute requests.</p>
+                </div>
+                <!-- Service 6 -->
+                <div class="bg-gray-50 p-8 rounded-xl card-shadow hover:scale-105 transition duration-300">
+                    <div class="text-indigo-600 mb-4">
+                        <svg class="w-12 h-12 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                        </svg>
+                    </div>
+                    <h4 class="text-2xl font-semibold text-center mb-4">Financial & Security Management</h4>
+                    <p class="text-gray-600 text-center">Secure handling of travel budgets, insurance, and contingency planning for your peace of mind throughout your journey.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section id="how-it-works" class="py-16 px-6 md:px-12 bg-gray-100">
+        <div class="max-w-6xl mx-auto">
+            <h3 class="text-4xl font-bold text-center mb-12 text-gradient">How Our Concierge Service Works</h3>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+                <!-- Step 1 -->
+                <div class="bg-white p-8 rounded-xl card-shadow hover:scale-105 transition duration-300">
+                    <div class="text-indigo-600 text-5xl font-extrabold mb-4">1</div>
+                    <h4 class="text-2xl font-semibold mb-4">Share Your Vision</h4>
+                    <p class="text-gray-600">Tell us your travel dreams, preferences, and any specific requirements. We listen intently to understand your unique desires.</p>
+                </div>
+                <!-- Step 2 -->
+                <div class="bg-white p-8 rounded-xl card-shadow hover:scale-105 transition duration-300">
+                    <div class="text-indigo-600 text-5xl font-extrabold mb-4">2</div>
+                    <h4 class="text-2xl font-semibold mb-4">Curated Planning</h4>
+                    <p class="text-gray-600">Our expert concierges meticulously craft a bespoke itinerary, handling all bookings, logistics, and special requests.</p>
+                </div>
+                <!-- Step 3 -->
+                <div class="bg-white p-8 rounded-xl card-shadow hover:scale-105 transition duration-300">
+                    <div class="text-indigo-600 text-5xl font-extrabold mb-4">3</div>
+                    <h4 class="text-2xl font-semibold mb-4">Experience & Enjoy</h4>
+                    <p class="text-gray-600">Travel with complete peace of mind, knowing every detail is managed. Enjoy your journey while we provide seamless support.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us Section -->
+    <section id="why-us" class="py-16 px-6 md:px-12 bg-white">
+        <div class="max-w-6xl mx-auto">
+            <h3 class="text-4xl font-bold text-center mb-12 text-gradient">Why Choose Travel Concierge Pro?</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                <div class="text-lg text-gray-700 space-y-6">
+                    <p><strong class="text-indigo-600">Unparalleled Expertise:</strong> Our team comprises seasoned travel specialists with extensive global knowledge and a passion for crafting extraordinary journeys.</p>
+                    <p><strong class="text-indigo-600">Exclusive Access:</strong> We open doors to experiences, accommodations, and services not available to the general public, thanks to our vast network.</p>
+                    <p><strong class="text-indigo-600">Time-Saving Convenience:</strong> Reclaim your valuable time. We handle all the intricate details, from research to bookings, so you don't have to.</p>
+                    <p><strong class="text-indigo-600">Seamless Peace of Mind:</strong> With 24/7 support and meticulous planning, you can relax and immerse yourself in your travels, knowing every contingency is covered.</p>
+                </div>
+                <div class="rounded-xl overflow-hidden card-shadow">
+                    <img src="https://placehold.co/600x400/8b5cf6/ffffff?text=Luxury+Travel" alt="Luxury Travel Experience" class="w-full h-auto object-cover">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="py-16 px-6 md:px-12 bg-gray-100">
+        <div class="max-w-4xl mx-auto">
+            <h3 class="text-4xl font-bold text-center mb-12 text-gradient">What Our Clients Say</h3>
+            <div class="space-y-8">
+                <!-- Testimonial 1 -->
+                <div class="bg-white p-8 rounded-xl card-shadow">
+                    <p class="text-lg italic text-gray-700 mb-4">"Travel Concierge Pro transformed our anniversary trip into an absolute dream. Every detail, from the private villa to the surprise vineyard tour, was impeccably planned. Truly a bespoke service!"</p>
+                    <p class="text-right font-semibold text-indigo-600">- Sarah & Mark T.</p>
+                </div>
+                <!-- Testimonial 2 -->
+                <div class="bg-white p-8 rounded-xl card-shadow">
+                    <p class="text-lg italic text-gray-700 mb-4">"Navigating international travel for our business trip used to be a headache. Travel Concierge Pro handled all our logistics, visas, and last-minute changes with incredible efficiency. Highly recommend!"</p>
+                    <p class="text-right font-semibold text-indigo-600">- David L.</p>
+                </div>
+                <!-- Testimonial 3 -->
+                <div class="bg-white p-8 rounded-xl card-shadow">
+                    <p class="text-lg italic text-gray-700 mb-4">"We wanted an adventure, but without the stress of planning. Travel Concierge Pro delivered beyond expectations, providing unique experiences and seamless support throughout our journey."</p>
+                    <p class="text-right font-semibold text-indigo-600">- Emily R.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action / Contact Section -->
+    <section id="contact" class="py-16 px-6 md:px-12 bg-indigo-600 text-white gradient-bg rounded-t-lg">
+        <div class="max-w-4xl mx-auto text-center">
+            <h3 class="text-4xl font-bold mb-6">Ready for Your Next Unforgettable Journey?</h3>
+            <p class="text-xl mb-8">Let Travel Concierge Pro handle the details while you focus on the experience. Contact us today to begin planning your bespoke adventure.</p>
+            <div class="flex flex-col md:flex-row justify-center items-center space-y-4 md:space-y-0 md:space-x-6">
+                <a href="mailto:info@travelconciergepro.com" class="inline-block bg-white text-indigo-600 font-bold py-3 px-8 rounded-full transition duration-300 transform hover:scale-105 card-shadow">Email Us</a>
+                <a href="tel:+1234567890" class="inline-block bg-white text-indigo-600 font-bold py-3 px-8 rounded-full transition duration-300 transform hover:scale-105 card-shadow">Call Us: +1 (322) 167-820</a>
+            </div
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-gray-300 py-8 px-6 md:px-12 rounded-b-lg">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center text-center md:text-left">
+            <div class="mb-4 md:mb-0">
+                <p>&copy; 2025 Travel Concierge Pro. All rights reserved.</p>
+            </div>
+            <div class="flex space-x-6">
+                <a href="#" class="hover:text-white transition duration-300">Privacy Policy</a>
+                <a href="#" class="hover:text-white transition duration-300">Terms of Service</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const closeMobileMenuButton = document.getElementById('close-mobile-menu');
+
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.remove('hidden');
+        });
+
+        closeMobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.add('hidden');
+        });
+    </script>
+
 </body>
 </html>
+
